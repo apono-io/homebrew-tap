@@ -9,9 +9,9 @@ class AponoCli < Formula
   license "Apache-2.0"
 
   on_macos do
-    if Hardware::CPU.arm?
-      url "https://github.com/apono-io/apono-cli/releases/download/v1.2.3/apono-cli_1.2.3_darwin_arm64.tar.gz"
-      sha256 "368b191a94abcb8b6b8707642ac38fd6499c4c52f0c2e6e48304da24a8a1133f"
+    if Hardware::CPU.intel?
+      url "https://github.com/apono-io/apono-cli/releases/download/v1.2.3/apono-cli_1.2.3_darwin_amd64.tar.gz"
+      sha256 "8be7c9390058eed994a629c0dc54ef442201bf9dc16614bc8f77a6feba20375d"
 
       def install
         bin.install "apono" => "apono"
@@ -20,9 +20,9 @@ class AponoCli < Formula
         zsh_completion.install "contrib/completion/zsh/_apono"
       end
     end
-    if Hardware::CPU.intel?
-      url "https://github.com/apono-io/apono-cli/releases/download/v1.2.3/apono-cli_1.2.3_darwin_amd64.tar.gz"
-      sha256 "c174e028f58b79e7da7c1f9b711605cac342c5f2deacbea013bd06ab4ce779c4"
+    if Hardware::CPU.arm?
+      url "https://github.com/apono-io/apono-cli/releases/download/v1.2.3/apono-cli_1.2.3_darwin_arm64.tar.gz"
+      sha256 "fd6f5370121cf750ce5d8cebd26eebbdbe60830e25e52716463cb47240a27b40"
 
       def install
         bin.install "apono" => "apono"
@@ -36,18 +36,7 @@ class AponoCli < Formula
   on_linux do
     if Hardware::CPU.arm? && !Hardware::CPU.is_64_bit?
       url "https://github.com/apono-io/apono-cli/releases/download/v1.2.3/apono-cli_1.2.3_linux_armv6.tar.gz"
-      sha256 "3650a07a4a9e203e1741e13225a2d6cc70206d644854f989f1601968d4582bd3"
-
-      def install
-        bin.install "apono" => "apono"
-        man1.install Dir["contrib/manpage/apono*.1"]
-        bash_completion.install "contrib/completion/bash/apono"
-        zsh_completion.install "contrib/completion/zsh/_apono"
-      end
-    end
-    if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/apono-io/apono-cli/releases/download/v1.2.3/apono-cli_1.2.3_linux_arm64.tar.gz"
-      sha256 "bf64b506c0ecf4deae3d7d67f2b161f4846596acedf372c8fc31345fcde468f0"
+      sha256 "67968ee3b94834808f5085fc8288cc5d6a345f8e5c4b34892d7f38cd5aa95484"
 
       def install
         bin.install "apono" => "apono"
@@ -58,7 +47,18 @@ class AponoCli < Formula
     end
     if Hardware::CPU.intel?
       url "https://github.com/apono-io/apono-cli/releases/download/v1.2.3/apono-cli_1.2.3_linux_amd64.tar.gz"
-      sha256 "ac38a2f6f41b6e39489644668904e416b3733e2f3f9572c84f66b01b56a39d68"
+      sha256 "86319053fb1a9f2fbb76ca0692b0d3e564159c1578ccf53a186080c38505b9c7"
+
+      def install
+        bin.install "apono" => "apono"
+        man1.install Dir["contrib/manpage/apono*.1"]
+        bash_completion.install "contrib/completion/bash/apono"
+        zsh_completion.install "contrib/completion/zsh/_apono"
+      end
+    end
+    if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
+      url "https://github.com/apono-io/apono-cli/releases/download/v1.2.3/apono-cli_1.2.3_linux_arm64.tar.gz"
+      sha256 "9ce5bc097e6c1c7b9f7bf609dfeb1b7bc304bd24c635ded9de25c51681944e00"
 
       def install
         bin.install "apono" => "apono"
